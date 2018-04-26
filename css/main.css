@@ -9,9 +9,6 @@ body {
 .full-height {
 	min-height: 100vh;
 }
-body {
-	background: url(../images/fruits.png) left top repeat-y, url(../images/fruits.png) right top repeat-y;
-}
 .btn.btn-primary, .list-group-item.active {
 	background: #00d1b2 !important;
 	border-color: #00d1b2 !important;
@@ -21,4 +18,9 @@ body {
 }
 .no-deco {
 	text-decoration: none !important;
+}
+@media (min-width: 1500px) {
+	body {
+		background: url(../images/fruits.png) left top repeat-y, url(../images/fruits.png) right top repeat-y;
+	}
 }

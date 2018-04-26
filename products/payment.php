@@ -18,44 +18,44 @@ $current_page = 'checkout';
 
 			<div class="card">
 				<div class="card-body">
-					<form>
+					<form action="/products/invoice.php" method="post">
 						<div class="form-group row">
 							<div class="col-sm-6 form-group">
 								<label for="first_name" class="form-label">First name</label>
-								<input type="text" class="form-control" id="first_name">
+								<input type="text" class="form-control" name="first_name" id="first_name" required>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label for="last_name" class="form-label">Last name</label>
-								<input type="text" class="form-control" id="last_name">
+								<input type="text" class="form-control" name="last_name" id="last_name" required>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label for="email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="email">
+								<input type="email" class="form-control" name="email" id="email" required>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label for="phone_number" class="form-label">Phone number</label>
-								<input type="text" class="form-control" id="phone_number">
+								<input type="text" class="form-control" name="phone_number" id="phone_number" required>
 							</div>
 							<div class="col-sm-12 form-group">
 								<label for="address" class="form-label">Address</label>
-								<textarea name="address" id="address" class="form-control" rows="5"></textarea>
+								<textarea name="address" name="address" id="address" class="form-control" rows="5" required></textarea>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label for="card_number" class="form-label">Card Number</label>
-								<input type="number" class="form-control" id="card_number">
+								<input type="number" class="form-control" name="card_number" id="card_number" required>
 							</div>
 							<div class="col-sm-3 form-group">
 								<label for="expiry_date" class="form-label">Expiry date</label>
-								<input type="text" class="form-control" id="expiry_date" placeholder="MM/YY">
+								<input type="text" class="form-control" name="expiry_date" id="expiry_date" placeholder="MM/YY" required>
 							</div>
 							<div class="col-sm-3 form-group">
 								<label for="ccv" class="form-label">CCV</label>
-								<input type="number" class="form-control" id="ccv">
+								<input type="number" class="form-control" name="ccv" id="ccv" required>
 							</div>
 							<div class="col-sm-12 form-group text-right">
 								<a class="btn btn-link" href="/products/checkout.php" role="button">Back</a>
-								<a class="btn btn-primary" href="/products/invoice.php" role="button">Submit</a>
-								<!-- <button type="button" class="btn btn-primary">Submit</button> -->
+								<!-- <a class="btn btn-primary" href="/products/invoice.php" role="button">Submit</a> -->
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</form>

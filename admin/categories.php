@@ -1,5 +1,6 @@
 <?php 
 $current_page = 'categories';
+require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/categories.php');
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
 
@@ -30,22 +31,22 @@ $current_page = 'categories';
 							</tr>
 						</thead>
 						<tbody>
+							<?php if ($result->num_rows > 0) : ?>
+								<?php while($row = $result->fetch_assoc()) : ?>
+								<tr>
+									<td><?php echo $row["id"] ?></td>
+									<td><?php echo $row["name"] ?></td>
+									<td class="text-center">
+										<a class="btn btn-secondary btn-sm" href="/admin/categories-create.php?id=<?php echo $row["id"] ?>" role="button">Edit</a>
+										<a class="btn btn-danger btn-sm" href="/admin/functions/categories-delete.php?id=<?php echo $row["id"] ?>" role="button">Delete</a>
+									</td>
+								</tr>
+								<?php endwhile ?>
+							<?php else : ?>
 							<tr>
-								<td>1</td>
-								<td>Lorem ipsum</td>
-								<td class="text-center">
-									<button type="button" class="btn btn-secondary btn-sm">Edit</button>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
+								<td colspan="3" class="text-center">No categories found</td>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>Lorem ipsum</td>
-								<td class="text-center">
-									<button type="button" class="btn btn-secondary btn-sm">Edit</button>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
-							</tr>
+							<?php endif ?>
 						</tbody>
 					</table>
 				</div>

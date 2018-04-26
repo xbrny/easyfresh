@@ -1,0 +1,41 @@
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, magnam.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur perspiciatis blanditiis quibusdam, beatae ipsa, ad molestiae pariatur voluptatum doloremque tempore enim ea recusandae quod sapiente quaerat nulla! Earum nostrum, fugiat nisi. Amet nostrum neque autem in, error adipisci enim dignissimos odit, ratione quibusdam, esse vero quisquam. Nisi, officia a maxime.
+
+products
+	id
+	name
+	price
+	stock
+	measurement
+	summary
+	description
+	photo
+	category_id
+
+categories
+	id
+	name
+
+orders
+	id
+	status
+	first_name
+	last_name
+	email
+	phone_number
+	address
+	total_price
+	created_date
+
+order_product
+   product_id
+   quantity
+   price
+   order_id
+
+users
+	first_name
+	last_name
+	email
+	password

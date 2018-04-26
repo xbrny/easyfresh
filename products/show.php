@@ -30,8 +30,12 @@ $current_page = 'products';
 								<div class="col-12">
 									<label for="inputPassword6">Quantity</label>
 								</div>
-								<div class="col-6">
-									<input type="number" class="form-control" id="quantity">
+								<div class="col-4">
+									<input type="hidden" name="product_id">
+									<input type="number" name="quantity" class="form-control" id="quantity" value="1" min="0" step="0.1">
+								</div>
+								<div class="col-2">
+									<label class="col-form-label">Kg</label>
 								</div>
 								<div class="col-6">
 									<button type="submit" class="btn btn-primary">Add to Cart</button>
@@ -44,6 +48,12 @@ $current_page = 'products';
 				<!-- end card-body -->
 			</div>
 			<!-- end card -->
+			<div class="card mt-4 mb-5" style="max-width: 100%;">
+				<div class="card-header">Product description</div>
+				<div class="card-body">
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+			</div>
 		</div>
 		<!-- end col -->
 	</div>
