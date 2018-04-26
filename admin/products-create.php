@@ -76,7 +76,8 @@ if(isset($_GET['id'])) {
 									<div class="col-sm-6 form-group">
 										<div class="form-group">
 												<label for="photo">Photo</label>
-												<input type="file" name="photo" class="form-control" name="photo" id="photo" required>
+												<input type="file" class="form-control" name="photo" id="photo" >
+												<input type="hidden" name="existing_photo" value="<?php echo isset($photo) ? $photo : '' ?>">
 											</div>
 										</div>
 									<div class="col-sm-12 form-group text-right">
