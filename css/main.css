@@ -1,0 +1,8 @@
+body {
+	font-family: 'Muli';
+	letter-spacing: 0.05rem;
+}
+.navbar .navbar-nav .nav-item .nav-link {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
