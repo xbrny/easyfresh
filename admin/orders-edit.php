@@ -5,9 +5,7 @@ $current_page = 'orders';
 
 <div class="container">
 	<div class="row mb-3">
-		<div class="col-12">
-			<?php require_once($abs_path.'/admin/partials/navigation.php') ?>
-		</div>
+		<?php require_once($abs_path.'/admin/partials/navigation.php') ?>
 	</div>
 
 	<div class="row">

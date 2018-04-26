@@ -6,3 +6,19 @@ body {
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
+.full-height {
+	min-height: 100vh;
+}
+body {
+	background: url(../images/fruits.png) left top repeat-y, url(../images/fruits.png) right top repeat-y;
+}
+.btn.btn-primary, .list-group-item.active {
+	background: #00d1b2 !important;
+	border-color: #00d1b2 !important;
+}
+.text-fresh {
+	color: #00d1b2 !important;
+}
+.no-deco {
+	text-decoration: none !important;
+}
