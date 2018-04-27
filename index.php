@@ -1,5 +1,7 @@
 <?php 
 $current_page = 'home';
+$current_category = 'all';
+require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/products.php');
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
 
@@ -21,18 +23,32 @@ $current_page = 'home';
 
 		<div class="col-sm-9">
 			<div class="row">
-				<?php for($i=0; $i < 9; $i++) : ?>
+			<?php if ($products->num_rows > 0) : ?>
+				<?php while($row = $products->fetch_assoc()) : ?>
 					<div class="col-4">
-						<div class="card mb-5" style="width: 100%;">
-							<img class="card-img-top" src="http://via.placeholder.com/200/eee" alt="Card image cap">
+						<div class="card mb-5 text-center" style="width: 100%;">
+							<a href="/products/show.php?id=<?php echo $row["id"] ?>">
+								<img class="card-img-top p-3 rounded" src="<?php echo $row["photo"] ?>" alt="<?php echo $row["name"] ?>" width="200" height="200">
+							</a>
 							<div class="card-body text-center">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">RM 10.00</p>
-								<a href="/products/show.php" class="btn btn-primary">Add to basket</a>
+								<a href="/products/show.php?id=<?php echo $row["id"] ?>">
+									<h5 class="card-title"><?php echo $row["name"] ?></h5>
+								</a>
+								<p class="card-text">RM <?php echo $row["price"] ?></p>
+								<a href="/products/show.php?id=<?php echo $row["id"] ?>" class="btn btn-primary">View</a>
 							</div>
 						</div>
 					</div>
-				<?php endfor ?>
+				<?php endwhile ?>
+			<?php else: ?>
+				<div class="col-12">
+					<div class="card mb-5" style="width: 100%;">
+						<div class="card-body text-center">
+							<p class="card-text text-muted">No product created</p>
+						</div>
+					</div>
+				</div>				
+			<?php endif ?>
 			</div>
 		</div>
 	</div>

@@ -8,13 +8,13 @@ if(empty($_GET['id'])) {
 
 	$sql = "SELECT id, name FROM categories WHERE id=$id";
 
-	$result = $conn->query($sql);
+	$categories = $conn->query($sql);
 
-	if (mysqli_num_rows($result) > 0) {
-		$row = mysqli_fetch_assoc($result);
+	if (mysqli_num_rows($categories) > 0) {
+		$row = mysqli_fetch_assoc($categories);
 		$id = $row["id"];
 		$name = $row["name"];
 	} else {
-		header('Location: /admin/');		
+		header('Location: /admin/');
 	}
 }

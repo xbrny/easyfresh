@@ -13,7 +13,7 @@
         <a class="nav-link" href="/products/">Products </a>
       </li>
       <li class="nav-item <?php echo $current_page == 'checkout' ? 'active' : ''; ?>">
-        <a class="nav-link btn btn-primary text-white" href="/products/checkout.php">Checkout</a>
+        <a class="nav-link btn btn-primary text-white" href="/products/basket.php">Basket</a>
       </li>
     </ul>
   </div>

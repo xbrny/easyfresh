@@ -1,5 +1,6 @@
 <?php 
 $current_page = 'checkout';
+require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/orders-edit.php');
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
 
@@ -18,6 +19,7 @@ $current_page = 'checkout';
 
 			<div class="card">
 				<div class="card-body">
+					<h5 class="text-danger pb-2 text-center">Please print or save this invoice as evidence of your payment</h5>
 					<table class="table table-bordered">
 						<tbody>
 							<tr>
@@ -25,31 +27,31 @@ $current_page = 'checkout';
 							</tr>
 							<tr>
 								<td width="25%">Invoice ID</td>
-								<td>1223</td>
+								<td><?php echo $id; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">First name</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $first_name; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">Last name</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $last_name; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">Email</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $email; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">Phone number</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $phone_number; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">Address</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $address; ?></td>
 							</tr>
 							<tr>
 								<td width="25%">Payment date</td>
-								<td>Lorem ipsum.</td>
+								<td><?php echo $created_date; ?></td>
 							</tr>
 						</tbody>
 					</table>
@@ -63,21 +65,22 @@ $current_page = 'checkout';
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Lorem ipsum.</td>
-								<td>10</td>
-								<td>RM 30.00</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>Lorem ipsum.</td>
-								<td>10</td>
-								<td>RM 30.00</td>
-							</tr>
+							<?php if ($products->num_rows > 0) : 
+								$total = 0; 
+								$count = 1 ?>
+								<?php while($row = $products->fetch_assoc()) :
+									$total += ($row['price'] *  $row['quantity']) ?>
+									<tr>
+										<td><?php echo $count++ ?></td>
+										<td><?php echo $row['product_name'] ?></td>
+										<td><?php echo $row['quantity'] ?></td>
+										<td>RM <?php echo ($row['price'] *  $row['quantity']); ?></td>
+									</tr>
+								<?php endwhile ?>
+							<?php endif ?>
 							<tr>
 								<td colspan="3"></td>
-								<td colspan="1"><strong>Subtotal: RM 100.00</strong></td>
+								<td colspan="1"><strong>Subtotal: RM <?php echo $total ?></strong></td>
 							</tr>
 						</tbody>
 					</table>

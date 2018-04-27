@@ -1,5 +1,12 @@
 <?php 
+session_start();
+if(!isset($_SESSION['logged_in'])) {
+  header('location: /admin/login.php');
+}
+
 $current_page = 'products.create';
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/categories.php');
 
 if(isset($_GET['id'])) {
 	require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/products-edit.php');
@@ -67,10 +74,16 @@ if(isset($_GET['id'])) {
 									<div class="col-sm-6 form-group">
 										<label for="category_id" class="form-label">Category</label>
 										<select name="category_id" name="category_id" id="category_id" class="form-control" required>
-											<option value="">Select one</option>
-											<option value="1" <?php echo (isset($category_id) && $category_id == 1) ? 'selected' : '' ?>>One</option>
-											<option value="2" <?php echo (isset($category_id) && $category_id == 2) ? 'selected' : '' ?>>Two</option>
-											<option value="3" <?php echo (isset($category_id) && $category_id == 3) ? 'selected' : '' ?>>Three</option>
+										<?php if ($categories->num_rows > 0) : ?>
+										<option value="">Select one</option>
+											<?php while($row = $categories->fetch_assoc()) : ?>
+											<option value="<?php echo $row['id'];  ?>" <?php echo (isset($category_id) && $category_id == $row['id']) ? 'selected' : '' ?>>
+												<?php echo $row['name'];  ?>
+											</option>
+											<?php endwhile ?>
+										<?php else : ?>
+										<option value="">No category created yet, please create first</option>									
+										<?php endif ?>
 										</select>
 									</div>
 									<div class="col-sm-6 form-group">

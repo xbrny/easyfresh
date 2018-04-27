@@ -1,5 +1,11 @@
 <?php 
+session_start();
+if(!isset($_SESSION['logged_in'])) {
+  header('location: /admin/login.php');
+}
+
 $current_page = 'orders';
+require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/orders.php');
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
 
@@ -32,62 +38,40 @@ $current_page = 'orders';
 							</tr>
 						</thead>
 						<tbody>
+							<?php if ($orders->num_rows > 0) : ?>
+								<?php while($row = $orders->fetch_assoc()) : ?>
+								<tr>
+									<td><?php echo $row["id"] ?></td>
+									<td>
+										<a href="/admin/orders-show.php?id=<?php echo $row["id"] ?>"><?php echo $row["first_name"] . ' ' . $row["last_name"] ?></a>
+									</td>
+									<td class="text-center">
+										<span class="w-75 badge <?php
+											if($row["status"] == 'pending') {
+												echo 'badge-danger';
+											} elseif($row["status"] == 'processing') {
+												echo 'badge-warning';
+											} else {
+												echo 'badge-success';
+											}
+											?>">
+											<?php echo $row["status"] ?>
+										</span>
+									</td>
+									<td class="text-center">
+										<?php echo date("d F Y", strtotime($row['created_date'])); ?>
+									</td>
+									<td class="text-center">
+										<a class="btn btn-secondary btn-sm" href="/admin/orders-edit.php?id=<?php echo $row["id"] ?>">Edit</a>
+										<a class="btn btn-danger btn-sm" href="/admin/functions/orders-delete.php?id=<?php echo $row["id"] ?>">Delete</a>
+									</td>
+								</tr>
+								<?php endwhile ?>
+							<?php else : ?>
 							<tr>
-								<td>21</td>
-								<td>
-									<a href="/admin/orders-show.php">Lorem ipsum</a>
-								</td>
-								<td class="text-center">
-									<span class="badge badge-success">Processed</span>
-								</td>
-								<td>12 April 2018</td>
-								<td class="text-center">
-									<a class="btn btn-secondary btn-sm" href="/admin/orders-edit.php" role="button">Edit</a>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
+								<td colspan="5" class="text-center">No items found</td>
 							</tr>
-							<tr>
-								<td>132</td>
-								<td>
-									<a href="/admin/orders-show.php">Lorem ipsum</a>
-								</td>
-								<td class="text-center">
-									<span class="badge badge-success">Processed</span>
-								</td>
-								<td>12 April 2018</td>
-								<td class="text-center">
-									<a class="btn btn-secondary btn-sm" href="/admin/orders-edit.php" role="button">Edit</a>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
-							</tr>
-							<tr>
-								<td>112</td>
-								<td>
-									<a href="/admin/orders-show.php">Lorem ipsum</a>
-								</td>
-								<td class="text-center">
-									<span class="badge badge-success">Processed</span>
-								</td>
-								<td>12 April 2018</td>
-								<td class="text-center">
-									<a class="btn btn-secondary btn-sm" href="/admin/orders-edit.php" role="button">Edit</a>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
-							</tr>
-							<tr>
-								<td>331</td>
-								<td>
-									<a href="/admin/orders-show.php">Lorem ipsum</a>
-								</td>
-								<td class="text-center">
-									<span class="badge badge-success">Processed</span>
-								</td>
-								<td>12 April 2018</td>
-								<td class="text-center">
-									<a class="btn btn-secondary btn-sm" href="/admin/orders-edit.php" role="button">Edit</a>
-									<button type="button" class="btn btn-danger btn-sm">Delete</button>
-								</td>
-							</tr>
+							<?php endif ?>
 						</tbody>
 					</table>
 				</div>

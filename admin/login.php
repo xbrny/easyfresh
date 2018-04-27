@@ -1,8 +1,31 @@
-<?php 
-$current_page = 'home';
-?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
+<?php
+session_start();
+if(isset($_SESSION['logged_in'])) {
+  header('location: /admin/');
+}
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/database-connection.php');
+$msg = '';
+$email = '';
+$password = '';
+
+if($_POST) {
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+
+	$sql = "SELECT email, password, username FROM users WHERE email='$email' AND password='$password'";
+
+	$user = $conn->query($sql);
+	if($user->num_rows > 0) {
+		session_start();
+		$_SESSION['logged_in'] = true;
+		header('Location: /admin/');
+	} else {
+		$msg = 'Invalid email and password';
+	}
+}
+?>
 <div class="container d-flex justify-content-center align-items-center flex-column full-height">
 	<h2><a class="text-fresh font-weight-bold no-deco" href="/">EasyFresh</a></h2>
 	<div class="card mt-3 mb-5" style="width: 400px">
@@ -10,14 +33,27 @@ $current_page = 'home';
 			Admin Login
 		</div>
 		<div class="card-body">
-			<form action="/admin">
+			<?php if(!empty($msg)) : ?>
+				<div>
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<?php echo $msg; ?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				<?php
+				$msg = '';
+			endif
+			?>
+			<form method="post">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+					<label for="email">Email address</label>
+					<input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Login</button>
 			</form>

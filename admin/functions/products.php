@@ -1,6 +1,11 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/database-connection.php');
 
-$sql = "SELECT id, name, stock FROM products";
+if(isset($_GET['category'])) {
+	$sql = "SELECT * FROM products WHERE category_id=$category_id";		
+} else {
+	$sql = "SELECT * FROM products";
+}
 
-$result = $conn->query($sql);
+
+$products = $conn->query($sql);

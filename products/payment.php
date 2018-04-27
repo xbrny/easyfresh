@@ -1,5 +1,6 @@
 <?php 
 $current_page = 'checkout';
+session_start();
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>
 
@@ -18,7 +19,14 @@ $current_page = 'checkout';
 
 			<div class="card">
 				<div class="card-body">
-					<form action="/products/invoice.php" method="post">
+					<form method="POST" action="/admin/functions/orders-store.php">
+						<?php
+							$total = 0;
+							foreach ($_SESSION['basket'] as $item) : 
+								$total += ($item['price'] *  $item['quantity']) ?>
+								<input type="hidden" name="items[]" value="<?php echo $item['id'] ?>">
+						<?php endforeach ?>
+						<input type="hidden" name="total_price" value="<?php echo $total ?>">
 						<div class="form-group row">
 							<div class="col-sm-6 form-group">
 								<label for="first_name" class="form-label">First name</label>
@@ -53,9 +61,8 @@ $current_page = 'checkout';
 								<input type="number" class="form-control" name="ccv" id="ccv" required>
 							</div>
 							<div class="col-sm-12 form-group text-right">
-								<a class="btn btn-link" href="/products/checkout.php" role="button">Back</a>
-								<!-- <a class="btn btn-primary" href="/products/invoice.php" role="button">Submit</a> -->
-								<button type="submit" class="btn btn-primary">Submit</button>
+								<a class="btn btn-link" href="/products/basket.php" role="button">Back</a>
+								<button type="submit" class="btn btn-primary" name="submit" value="true">Submit</button>
 							</div>
 						</div>
 					</form>

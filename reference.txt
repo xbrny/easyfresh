@@ -30,6 +30,7 @@ orders
 
 order_product
    product_id
+   product_name
    quantity
    price
    order_id

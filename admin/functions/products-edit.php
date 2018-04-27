@@ -8,10 +8,10 @@ if(empty($_GET['id'])) {
 
 	$sql = "SELECT * FROM products WHERE id=$id LIMIT 1";
 
-	$result = $conn->query($sql);
+	$product = $conn->query($sql);
 
-	if (mysqli_num_rows($result) > 0) {
-		$row = mysqli_fetch_assoc($result);
+	if (mysqli_num_rows($product) > 0) {
+		$row = mysqli_fetch_assoc($product);
 		$id = $row["id"];
 		$name = $row["name"];
 		$price = $row['price'];

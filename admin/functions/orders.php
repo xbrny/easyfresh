@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/database-connection.php');
 
-$sql = "SELECT id, name FROM categories";
+$sql = "SELECT * FROM orders";
 
-$categories = $conn->query($sql);
+$orders = $conn->query($sql);

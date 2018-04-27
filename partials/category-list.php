@@ -1,8 +1,11 @@
+<?php require($_SERVER['DOCUMENT_ROOT'].'/admin/functions/categories.php'); ?>
 <ul class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active <?php echo $current_page == '#' ? 'active' : ''; ?>">Category one</a>
-  <a href="#" class="list-group-item list-group-item-action <?php echo $current_page == '#' ? 'active' : ''; ?>">Category two</a>
-  <a href="#" class="list-group-item list-group-item-action <?php echo $current_page == '#' ? 'active' : ''; ?>">Category three</a>
-  <a href="#" class="list-group-item list-group-item-action <?php echo $current_page == '#' ? 'active' : ''; ?>">Category four</a>
-  <a href="#" class="list-group-item list-group-item-action <?php echo $current_page == '#' ? 'active' : ''; ?>">Category five</a>
-  <a href="#" class="list-group-item list-group-item-action <?php echo $current_page == '#' ? 'active' : ''; ?>">Category six</a>
+<a href="/products" class="list-group-item list-group-item-action <?php echo $current_category == 'all' ? 'active' : ''; ?>">All</a>
+<?php if ($categories->num_rows > 0) : ?>
+	<?php while($row = $categories->fetch_assoc()) : ?>
+	<a href="/products?category=<?php echo $row["id"] ?>" class="list-group-item list-group-item-action <?php echo $current_category == $row["id"] ? 'active' : ''; ?>"><?php echo $row["name"] ?></a>
+	<?php endwhile ?>
+<?php else: ?>
+	<a href="#" class="list-group-item list-group-item-action disabled">No category created</a>
+<?php endif ?>
 </ul>

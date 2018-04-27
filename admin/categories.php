@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if(!isset($_SESSION['logged_in'])) {
+  header('location: /admin/login.php');
+}
+
 $current_page = 'categories';
 require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/categories.php');
 ?>
@@ -31,8 +36,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/categories.php');
 							</tr>
 						</thead>
 						<tbody>
-							<?php if ($result->num_rows > 0) : ?>
-								<?php while($row = $result->fetch_assoc()) : ?>
+							<?php if ($categories->num_rows > 0) : ?>
+								<?php while($row = $categories->fetch_assoc()) : ?>
 								<tr>
 									<td><?php echo $row["id"] ?></td>
 									<td><?php echo $row["name"] ?></td>

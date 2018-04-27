@@ -1,4 +1,9 @@
-<?php 
+<?php
+session_start();
+if(!isset($_SESSION['logged_in'])) {
+  header('location: /admin/login.php');
+}
+
 $current_page = 'invoices';
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php') ?>

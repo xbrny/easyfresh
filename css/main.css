@@ -16,8 +16,16 @@ body {
 .text-fresh {
 	color: #00d1b2 !important;
 }
-.no-deco {
+.no-deco, a {
 	text-decoration: none !important;
+}
+a {
+	color: #00d1b2;
+	transition-duration: 300ms;
+}
+a:hover {
+	color: #00d1b2;
+	opacity: 0.8;
 }
 @media (min-width: 1500px) {
 	body {
