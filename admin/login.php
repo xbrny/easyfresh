@@ -6,6 +6,7 @@ if(isset($_SESSION['logged_in'])) {
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/partials/header.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/database-connection.php');
+
 $msg = '';
 $email = '';
 $password = '';
@@ -20,6 +21,7 @@ if($_POST) {
 	if($user->num_rows > 0) {
 		session_start();
 		$_SESSION['logged_in'] = true;
+		$_SESSION['email'] = $email;
 		header('Location: /admin/');
 	} else {
 		$msg = 'Invalid email and password';
@@ -28,7 +30,7 @@ if($_POST) {
 ?>
 <div class="container d-flex justify-content-center align-items-center flex-column full-height">
 	<h2><a class="text-fresh font-weight-bold no-deco" href="/">EasyFresh</a></h2>
-	<div class="card mt-3 mb-5" style="width: 400px">
+	<div class="card mt-3 mb-5" style="width: 400px;">
 		<div class="card-header text-center">
 			Admin Login
 		</div>
@@ -49,11 +51,11 @@ if($_POST) {
 			<form method="post">
 				<div class="form-group">
 					<label for="email">Email address</label>
-					<input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>
+					<input type="email" class="form-control" name="email" id="email" placeholder="Enter email" value="<?php echo $email ?>" required>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password ?>" required>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Login</button>
 			</form>

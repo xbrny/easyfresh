@@ -7,5 +7,4 @@ if(isset($_GET['category'])) {
 	$sql = "SELECT * FROM products";
 }
 
-
 $products = $conn->query($sql);
