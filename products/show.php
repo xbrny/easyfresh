@@ -37,16 +37,17 @@ $current_category = $category_id;
 								<div class="col-12">
 									<label for="inputPassword6">Quantity</label>
 								</div>
-								<div class="col-4">
+								<div class="col-6">
 									<input type="hidden" name="id" value="<?php echo $id; ?>">
 									<input type="hidden" name="price" value="<?php echo $price; ?>">
 									<input type="hidden" name="name" value="<?php echo $name; ?>">
+									<input type="hidden" name="measurement" value="<?php echo $measurement; ?>">
 									<input type="number" name="quantity" class="form-control" id="quantity" value="1" min="0" step="0.1">
 								</div>
-								<div class="col-2">
-									<label class="col-form-label">Kg</label>
-								</div>
 								<div class="col-6">
+									<label class="col-form-label"><?php echo $measurement; ?></label>
+								</div>
+								<div class="col-12 mt-2">
 									<button type="submit" class="btn btn-primary">Add to Cart</button>
 								</div>
 							</form>

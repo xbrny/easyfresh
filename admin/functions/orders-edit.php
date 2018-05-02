@@ -26,7 +26,7 @@ if(empty($_GET['id'])) {
 		header('Location: /admin/');
 	}
 
-	$sql = "SELECT product_id, product_name, quantity, price FROM order_product WHERE order_id=$id";
+	$sql = "SELECT product_id, product_name, quantity, price, measurement FROM order_product WHERE order_id=$id";
 
 	$products = $conn->query($sql);
 }

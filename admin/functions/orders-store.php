@@ -25,9 +25,10 @@ if(empty($_POST['submit'])) {
 			$name = $item["name"];
 			$quantity = $item["quantity"];
 			$price = $item["price"];
+			$measurement = $item["measurement"];
 			
-			$sql = "INSERT INTO order_product (product_id, product_name, quantity, price, order_id)
-				VALUES ($product_id, '$name', $quantity, $price, $order_id)";
+			$sql = "INSERT INTO order_product (product_id, product_name, quantity, price, measurement, order_id)
+				VALUES ($product_id, '$name', $quantity, $price, '$measurement', $order_id)";
 
 			if ($conn->query($sql) !== TRUE) {
 				echo "Error: " . $sql . "<br>" . $conn->error;

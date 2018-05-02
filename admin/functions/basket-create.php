@@ -7,7 +7,8 @@ if(isset($_POST['id'])) {
 		'id' => $_POST['id'],
 		'name' => $_POST['name'],
 		'price' => $_POST['price'],
-		'quantity' => $_POST['quantity']
+		'quantity' => $_POST['quantity'],
+		'measurement' => $_POST['measurement']
 	);
 	$item_id_array = [];
 	if (isset($_SESSION['basket'])) {

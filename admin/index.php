@@ -31,8 +31,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/products.php');
 						<thead>
 							<tr>
 								<th class="text-center" width="5%">#</th>
-								<th class="text-center" width="50%">Product</th>
-								<th class="text-center" width="20%">Stock</th>
+								<th class="text-center" width="45%">Product</th>
+								<th class="text-center" width="25%">Stock</th>
 								<th class="text-center" width="25%"></th>
 							</tr>
 						</thead>
@@ -42,7 +42,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/products.php');
 								<tr>
 									<td><?php echo $row["id"] ?></td>
 									<td><?php echo $row["name"] ?></td>
-									<td class="text-center"><?php echo $row["stock"] ?></td>
+									<td class="text-center"><?php echo $row["stock"] ?> <?php echo $row["measurement"] ?></td>
 									<td class="text-center">
 										<a class="btn btn-secondary btn-sm" href="/admin/products-create.php?id=<?php echo $row["id"] ?>">Edit</a>
 										<a class="btn btn-danger btn-sm" href="/admin/functions/products-delete.php?id=<?php echo $row["id"] ?>">Delete</a>

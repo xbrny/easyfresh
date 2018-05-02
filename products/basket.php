@@ -37,7 +37,7 @@ session_start();
 						<tr>
 							<td><?php echo $count++ ?></td>
 							<td><?php echo $item['name'] ?></td>
-							<td><?php echo $item['quantity'] ?></td>
+							<td><?php echo $item['quantity'] ?> <?php echo $item['measurement'] ?></td>
 							<td>RM <?php echo ($item['price'] *  $item['quantity']); ?></td>
 							<td class="text-center">
 								<a class="btn btn-danger btn-sm" href="/admin/functions/basket-create.php?id=<?php echo $item["id"] ?>">Delete</a>

@@ -96,7 +96,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/admin/functions/orders-edit.php');
 									<tr>
 										<td><?php echo $count++ ?></td>
 										<td><?php echo $row['product_name'] ?></td>
-										<td><?php echo $row['quantity'] ?></td>
+										<td><?php echo $row['quantity'] ?> <?php echo $row['measurement'] ?></td>
 										<td>RM <?php echo ($row['price'] *  $row['quantity']); ?></td>
 									</tr>
 								<?php endwhile ?>
