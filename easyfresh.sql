@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 27, 2018 at 04:45 PM
+-- Generation Time: May 02, 2018 at 04:56 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -69,8 +69,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `status`, `first_name`, `last_name`, `email`, `phone_number`, `address`, `total_price`, `created_date`) VALUES
-(14, 'processing', 'Mohd', 'Thabrani', 'bani.buenito@gmail.com', '175501825', 'No 12 kampung naga', '65.98', '2018-04-27 07:27:48'),
-(15, 'pending', 'Jamal', 'Adib', 'jamal@gmail.com', '0123456567', 'Jalan Klang Lama 090000', '30.00', '2018-04-27 07:40:51');
+(20, 'delivered', 'Mohd', 'Thabrani', 'bani.buenito@gmail.com', '175501825', 'No 12 kampung naga', '15.00', '2018-05-02 08:53:56'),
+(21, 'processing', 'Jamal', 'Abdullah', 'jamal@gmail.com', '0192877272', 'Jitra Kedah', '51.98', '2018-05-02 08:54:34');
 
 -- --------------------------------------------------------
 
@@ -83,6 +83,7 @@ CREATE TABLE `order_product` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `measurement` varchar(50) NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `order_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,11 +92,11 @@ CREATE TABLE `order_product` (
 -- Dumping data for table `order_product`
 --
 
-INSERT INTO `order_product` (`id`, `product_id`, `product_name`, `quantity`, `price`, `order_id`) VALUES
-(5, 3, 'Fuji Apples', 2, '10.00', 14),
-(6, 2, 'Bananas', 2, '4.99', 14),
-(7, 4, 'Grapes', 3, '12.00', 14),
-(8, 3, 'Fuji Apples', 3, '10.00', 15);
+INSERT INTO `order_product` (`id`, `product_id`, `product_name`, `quantity`, `measurement`, `price`, `order_id`) VALUES
+(16, 1, 'Tembikai', 1, 'Kg', '15.00', 20),
+(17, 2, 'Bananas', 2, 'Kg', '4.99', 21),
+(18, 3, 'Fuji Apples', 3, 'Pack (10)', '10.00', 21),
+(19, 4, 'Grapes', 1, 'Kg', '12.00', 21);
 
 -- --------------------------------------------------------
 
@@ -188,27 +189,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
